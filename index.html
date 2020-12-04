@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>index</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDT7sSTMO5sgyqu_1l0KuaIK_QAyv0U44c&callback=initMap&libraries=&v=weekly" defer></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+	<style>
+		*{margin: 0;
+		padding: 0;}
+		html, body{
+			width: 100%;
+			height: 100%;
+			overflow-x: hidden;}
+		#wrapper{
+			width: 100%;
+			height: 4900px;
+			position: absolute;
+			/*border: 1px solid red;*/
+		}
+		/*.bo{
+			border: 1px solid red;
+		}*/
+		#wrapper>section{
+			width: 100%;
+			position: absolute;
+			/*border: 1px solid blue;*/
+		}
+		/*배경 코딩*/
+		#wrapper>section#home{
+			height: 980px;
+			top:0;
+			background: url(img/bg/bg_01.png) no-repeat center top;
+			position: absolute;
+		}
+		#wrapper>section#about{
+			height: 980px;
+			top:20%;
+			background: url(img/about_bg.png) no-repeat center top;
+		}
+		#wrapper>section#process{
+			height: 980px;
+			top:40%;
+			background: url(img/bg/bg_03_3.png) no-repeat center top;
+		}
+		#wrapper>section#product{
+			height: 980px;
+			top:60%;
+			background: url(img/product_1.png) no-repeat center top;
+		}
+		#wrapper>section#program{
+			height: 980px;
+			top:80%;
+			background: url(img/bg/background_05.png) no-repeat center top;
+		}
+		nav#lnb_top ul{
+			width: 960px;
+			height: 60px;
+			position: absolute;
+			top: 10px;
+			right: 30px;
+			/*border: 1px solid blue;*/
+			overflow: hidden;
+		}
+		nav#lnb_top li{
+			/*background: url(nav/menu.png);*/
+			width: 240px;
+			height: 60px;
+			/*border: 1px solid red;*/
+			list-style: none;
+			float: left;
+			box-sizing: border-box;
+		}
+		nav#lnb_top li a{
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-indent: -9999px;
+		}
+		/*상단 lnb네브*/
+		nav#lnb_top li:nth-child(1){
+			background: url(img/nav/menu_01.png);
+		}
+		nav#lnb_top li:nth-child(2){
+			background: url(img/nav/menu_02.png);
+		}
+		nav#lnb_top li:nth-child(3){
+			background: url(img/nav/menu_03.png);
+		}
+		nav#lnb_top li:nth-child(4){
+			background: url(img/nav/menu_04.png);
+		}
+		/*상단 lnb네브 호버시*/
+		nav#lnb_top li:nth-child(1):hover{
+			background: url(img/nav/menu_hover01.png);
+			animation: menu 0.5s steps(3) 1;
+			animation-fill-mode: forwards; 
+		}
+		nav#lnb_top li:nth-child(2):hover{
+			background: url(img/nav/menu_hover02.png);
+			animation: menu 0.5s steps(3) 1;
+			animation-fill-mode: forwards; 
+		}
+		nav#lnb_top li:nth-child(3):hover{
+			background: url(img/nav/menu_hover03.png);
+			animation: menu 0.5s steps(3) 1;
+			animation-fill-mode: forwards; 
+		}
+		nav#lnb_top li:nth-child(4):hover{
+			background: url(img/nav/menu_hover04.png);
+			animation: menu 0.5s steps(3) 1;
+			animation-fill-mode: forwards; 
+		}
+		@keyframes menu{
+			from{background-position: 0 0;}
+			to{background-position: -720px 0;}
+		}
+		nav#gnb_side ul{
+			width: 138px;
+			height: 324px;
+			position: fixed;
+			top: 250px;
+			left: 30px;
+			/*border: 1px solid blue;*/
+			overflow: hidden;
+			z-index: 3;
+		}
+		nav#gnb_side li{
+			/*background: url(img/gnb_01.png);*/
+			width: 100%;
+			height: 25%;
+			/*border: 1px solid red;*/
+			list-style: none;
+			float: left;
+			box-sizing: border-box;
+		}
+		nav#gnb_side li a{
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-indent: -9999px;
+		}
+		/*사이드 gnb네브*/
+		nav#gnb_side li:nth-child(1){
+			background: url(img/nav/gnb_01_.png);
+		}
+		nav#gnb_side li:nth-child(2){
+			background: url(img/nav/gnb_02_.png);
+		}
+		nav#gnb_side li:nth-child(3){
+			background: url(img/nav/gnb_03_.png);
+		}
+		nav#gnb_side li:nth-child(4){
+			background: url(img/nav/gnb_04_.png);
+		}
+		/*사이드 gnb네브 호버시*/
+		nav#gnb_side li:nth-child(1):hover{
+			background: url(img/nav/hover_01.png);
+			
+		}
+		nav#gnb_side li:nth-child(2):hover{
+			background: url(img/nav/hover_02.png);
+		}
+		nav#gnb_side li:nth-child(3):hover{
+			background: url(img/nav/hover_03.png);
+			
+		}
+		nav#gnb_side li:nth-child(4):hover{
+			background: url(img/nav/hover_04.png);
+			
+		}
+		@keyframes menu{
+			from{background-position: 0 0;}
+			to{background-position: -720px 0;}
+		}
+		/*logo 네브*/
+		nav.logo a{
+			display: block;
+			width: 100%;
+			height: 100%;
+			text-indent: -9999px;
+		}
+		#wrapper nav.logo{
+			width: 180px;
+			height: 180px;
+			background: url(img/logo_03.png);
+			position: fixed;
+			top: -15px;
+			left: 25px;
+			z-index: 99999;
+			/*border: 1px solid red;*/
+		}
+		#wrapper nav.logo:hover{
+			background: url(img/logo_all2.png);
+			animation:logo 0.8s steps(6) infinite;
+
+		}
+		@keyframes logo{
+			form{}
+			to{background-position: -1080px 0;}
+		}
+		/*home페이지 코딩*/
+		section#home .dokdo{
+			width: 1000px;
+			height: 700px;
+			background: url(img/dokdo.png);
+			position: absolute;
+			top: 480px;
+			right: 100px;
+			animation:move 2s linear;
+			animation-fill-mode: forwards;
+		}
+		@keyframes move{
+			0%{}
+			100%{top: 156px; right: 600px; transform: scale(0.6);
+				/*transform: alternate;*/}
+		}
+		section#home .ulleungdo{
+			width: 1200px;
+			height: 450px;
+			background: url(img/ulleungdo_1.png);
+			position: absolute;
+			bottom: 0px;
+			right: 0px;
+			animation:move2 2s linear;
+			animation-fill-mode: forwards;
+		}
+		@keyframes move2{
+			0%{right:-1000px;}
+			50%{}
+			100%{right: -10px;
+				/*transform: alternate;*/}
+		}
+		section#home .wooRi{
+			width: 172px;
+			height: 590px;
+			background: url(img/makgeolli_9.png);
+			position: absolute;
+			/*right: 100px;*/
+			
+			bottom: 115px;
+			right: 400px;
+			/*border: 1px solid red;*/
+			z-index: 10;
+			display: none;
+			cursor: pointer;
+		}
+		section#home .wooRi2{
+			width: 158px;
+			height: 590px;
+			background: url(img/product_5.png);
+			position: absolute;
+			/*right: 100px;*/
+			bottom: 110px;
+			right: 230px;
+			transform: scale(0.95);
+			/*border: 1px solid red;*/
+			z-index: 9;
+			display: none;
+			cursor: pointer;
+			
+		}
+		section#home .video{
+			width: 1000px;
+			height: 1000px;
+			position: absolute;
+			top: 150px;
+			left: 350px;
+			z-index: 5;
+			/*display: none;*/
+		}
+		section#home .utude{
+			/*border: 1px solid red;*/
+			position: absolute;
+			top: 100px;
+			left: 20px;
+			display: none;
+		}
+		section#home .tubeshow{
+			width: 139px;
+			height: 38px;
+			background: url(img/tube.png);
+			position: absolute;
+			right: 240px;
+			bottom: 510px;
+			/*border: 1px solid red;*/
+			transform: scale(0.58);
+			z-index: 11;
+			display: none;
+			cursor: pointer;
+			animation:txtpd 0.7s infinite linear;
+		}
+		section#home .text_pd{
+			width: 215px;
+			height: 40px;
+			background: url(img/txt.png);
+			position: absolute;
+			right: 375px;
+			bottom: 510px;
+			/*border: 1px solid red;*/
+			transform: scale(0.5);
+			z-index: 11;
+			animation:txtpd 0.7s infinite linear;
+			display: none;
+			cursor: pointer;
+		}
+		@keyframes txtpd{
+			0%{animation-delay: 4.9s}
+			50%{opacity: 0;}
+			100%{opacity: 1;}
+		}
+		section#home .makgeolli{
+			width: 850px;
+			height: 750px;
+			background: url(img/makgeolli_ALL.png);
+			position: absolute;
+			right: -850px;
+			/*bottom: 50px;
+			right: 20px;*/
+			/*border: 1px solid red;*/
+			animation: rotate 2s steps(6) 1;
+			animation-delay: 2.3s;
+			animation-fill-mode: forwards;
+			/*display: none;*/
+		}
+		@keyframes rotate{
+			0%{bottom: 30px;
+				right: 20px;}
+			/*50%{top:50%;}*/
+			100%{background-position: -5100px 0;
+				bottom: 30px;
+				right: 20px;
+				}
+		}
+		section#home .glass{
+			/*border: 1px solid red;*/
+			width: 284px;
+			height: 284px;
+			/*background: url(img/glass_01.png) no-repeat;
+			background-size: 255.6px;*/
+			position: absolute;
+			bottom:110px;
+			right: 470px;
+			animation:increase 1.5s;
+			animation-delay: 2.2s;
+			animation-fill-mode: forwards;
+			/*display: none;*/
+		}
+		@keyframes increase{
+			0%{background-image: url(img/glass_01.png);}
+			79.999%{background-image: url(img/glass_01.png);}
+			80%{background-image: url(img/glass_02.png);}
+			90%{background-image: url(img/glass_03.png);}
+			/*99.9999%{background-image: url(img/glass_03.png); opacity: 50%;}*/
+			100%{background-image: url(img/glass_04.png);}
+		}
+		section#home .bird1{
+			/*border: 1px solid red;*/
+			width: 150px;
+			height: 180px;
+			background: url(img/bird_2.png) no-repeat;
+			position: absolute;
+			top: 60px;
+			left: 350px;
+			/*transform: rotateZ(20deg);*/
+			animation: bird1 0.5s steps(2) infinite;
+		}
+		@keyframes bird1{
+			from{}
+			to{background-position: -300px 0;}
+		}
+		section#home .bird2{
+			width: 180px;
+			height: 120px;
+			background: url(img/bird.png) no-repeat;
+			position: absolute;
+			top: 500px;
+			left: 350px;
+			transform: rotateZ(-10deg);
+			animation: bird2 0.5s steps(2) infinite;
+			/*border: 1px solid red;*/
+		}
+		@keyframes bird2{
+			from{}
+			to{background-position: -360px 0;}
+		}
+		section#home .bird3{
+			/*border: 1px solid red;*/
+			width: 180px;
+			height: 120px;
+			background: url(img/bird_R.png) no-repeat;
+			/*background-size: 162px;*/
+			position: absolute;
+			top: 150px;
+			right: 400px;
+			animation: bird2 0.5s steps(2) infinite;
+		}
+		@keyframes bird3{
+			from{}
+			to{background-position: -360px 0;}
+		}
+		section#home .searion{
+			width: 360px;
+			height: 180px;
+			background: url(img/searion_small.png);
+			position: fixed;
+			bottom: 25px;
+			left: 60px;
+			animation:searion 0.4s steps(2) infinite;
+			/*border: 1px solid red;*/
+			z-index: 2;
+			/*transform: rotate(5deg);*/
+		}
+		@keyframes searion{
+			from{}
+			to{background-position: -720px 0;}
+		}
+		section#home .LNB{
+			width: 651px;
+			height: 980px;
+			background: url(img/LNB_04.png);
+			position: fixed;
+			top: 0px;
+			left: 0px;
+			z-index: 1;
+		}
+		/*about 페이지 코딩*/
+
+		section#about .story1{
+			width: 664px;
+			height: 664px;
+			background: url(img/about01.png);
+			position: absolute;
+			top: 150px;
+			left: 350px;
+			z-index: 5;
+			/*display: none;*/
+		}
+		section#about .story2{
+			width: 664px;
+			height: 664px;
+			background: url(img/about02.png);
+			position: absolute;
+			top: 150px;
+			left: 350px;
+			z-index: 5;
+			display: none;
+		}
+		section#about .story3{
+			width: 665px;
+			height: 665px;
+			background: url(img/about03.png);
+			position: absolute;
+			top: 150px;
+			left: 350px;
+			z-index: 5;
+			display: none;
+		}
+		
+		section#about img{
+			position: absolute;
+			top: 100px;
+			left: 300px;
+			z-index: 5;
+			/*border: 1px solid red;*/
+			display: none;
+		}
+
+		section#about .dokdo2{
+			width: 1200px;
+			height: 800px;
+			background: url(img/dokdo_02.png);
+			position: absolute;
+			right: 20px;
+			bottom: 20px;
+			/*animation:scale 1s linear;*/
+			animation-fill-mode: forwards;
+		}
+		@keyframes scale{
+			0%{left: 800px;}
+			100%{transform: scale(0.8);
+				left: 800px;}
+		}
+		section#about .txtclick2{
+			width: 51px;
+			height: 29px;
+			background: url(img/clickicon.png);
+			position: absolute;
+			right: 180px;
+			bottom: 330px;
+			/*border: 1px solid red;*/
+			z-index: 10;
+			transform: scale(0.7);
+			animation:txtclick 0.7s infinite linear;
+
+		}
+		section#about .txtclick{
+			width: 51px;
+			height: 29px;
+			background: url(img/clickicon.png);
+			position: absolute;
+			right: 490px;
+			bottom: 265px;
+			/*border: 1px solid red;*/
+			z-index: 10;
+			transform: scale(0.7);
+			animation:txtclick 0.7s infinite linear;
+
+		}
+		section#about .txtclick3{
+			width: 51px;
+			height: 29px;
+			background: url(img/clickicon.png);
+			position: absolute;
+			left: 1100px;
+			bottom: 450px;
+			/*border: 1px solid red;*/
+			z-index: 10;
+			transform: scale(0.7);
+			animation:txtclick 0.7s infinite linear;
+
+		}
+		@keyframes txtclick{
+			0%{}
+			50%{opacity: 0;}
+			100%{opacity: 1;}
+		}
+		section#about .drop_mg{
+			width: 80px;
+			height: 80px;
+			background: url(img/mg.png);
+			position: absolute;
+			/*border: 1px solid red;*/
+			left: 1100px;
+			bottom: 380px;
+			animation: updown1 1s infinite linear;
+			cursor: pointer;
+		}
+		@keyframes updown1{
+			0%{}
+			50%{bottom: 400px;}
+			100%{bottom: 380px;}
+		}
+		section#about .drop_mg:hover{
+			width: 89px;
+			height: 85px;
+			background: url(img/mg_1.png);
+			position: absolute;
+			/*border: 1px solid red;*/
+			/*right: 500px;
+			bottom: 200px;*/
+		}
+		section#about .drop_ca{
+			width: 77px;
+			height: 77px;
+			background: url(img/ca.png);
+			position: absolute;
+			/*border: 1px solid red;*/
+			right: 500px;
+			bottom: 200px;
+			animation: updown2 1s infinite linear;
+			cursor: pointer;
+		}
+		@keyframes updown2{
+			0%{}
+			50%{bottom: 220px;}
+			100%{bottom: 200px;}
+		}
+		section#about .drop_ca:hover{
+			width: 89px;
+			height: 82px;
+			background: url(img/ca_1.png);
+			position: absolute;
+			/*border: 1px solid red;*/
+			/*right: 500px;
+			bottom: 200px;*/
+		}
+		section#about .drop_k{
+			width: 65px;
+			height: 65px;
+			background: url(img/k.png);
+			position: absolute;
+			/*border: 1px solid red;*/
+			right: 200px;
+			bottom: 300px;
+			animation: updown3 1s infinite linear;
+			cursor: pointer;
+
+		}
+		@keyframes updown3{
+			0%{}
+			50%{bottom: 280px;}
+			100%{bottom: 300px;}
+		}
+		section#about .drop_k:hover{
+			width: 70px;
+			height: 69px;
+			background: url(img/k_1.png);
+			position: absolute;
+			/*border: 1px solid red;*/
+			/*right: 500px;
+			bottom: 200px;*/
+		}
+		
+		section#about .bird2{
+			width: 180px;
+			height: 120px;
+			background: url(img/bird.png) no-repeat;
+			position: absolute;
+			top: 160px;
+			left: 300px;
+			transform: rotateZ(-40deg);
+			animation: bird2 0.5s steps(2) infinite;
+			/*border: 1px solid red;*/
+			z-index: 10;
+		}
+		@keyframes bird2{
+			from{}
+			to{background-position: -360px 0;}
+		}
+		section#about .bird3{
+			/*border: 1px solid red;*/
+			width: 180px;
+			height: 120px;
+			background: url(img/bird_R.png) no-repeat;
+			/*background-size: 162px;*/
+			position: absolute;
+			top: 200px;
+			right: 100px;
+			animation: bird2 0.5s steps(2) infinite;
+		}
+		@keyframes bird3{
+			from{}
+			to{background-position: -360px 0;}
+		}
+		section#about .fish1{
+			width: 54px;
+			height: 29px;
+			background: url(img/fish_01.png);
+			position: absolute;
+			top: 480px;
+			right: 620px;
+		}
+		section#about .fish2{
+			width: 75px;
+			height: 39px;
+			background: url(img/fish_02.png);
+			position: absolute;
+			top: 480px;
+			right: 300px;
+		}
+		section#about .fish3{
+			width: 45px;
+			height: 24px;
+			background: url(img/fish_03.png);
+			position: absolute;
+			top: 470px;
+			right: 500px;
+		}
+		section#about .fish4{
+			width: 73px;
+			height: 39px;
+			background: url(img/fish_04.png);
+			position: absolute;
+			top: 450px;
+			right: 180px;
+		}
+		/*process 페이지코딩*/
+		section#process .section8{
+			width: 961px;
+			height: 851px;
+			background: url(img/8section.png);
+			position: absolute;
+			z-index: -1;
+			right: 290px;
+			top: 50px;
+		}
+		section#process .process_mk{
+			width: 961px;
+			height: 851px;
+			background: url(img/process_mk.png);
+			position: absolute;
+			right: 290px;
+			top: 50px;
+		}
+		section#process .bird2{
+			width: 180px;
+			height: 120px;
+			background: url(img/bird.png) no-repeat;
+			position: absolute;
+			top: 530px;
+			left: 360px;
+			transform: rotateZ(-25deg);
+			animation: bird2 0.5s steps(2) infinite;
+			/*border: 1px solid red;*/
+			z-index: 10;
+		}
+		@keyframes bird2{
+			from{}
+			to{background-position: -360px 0;}
+		}
+		section#process .bird3{
+			/*border: 1px solid red;*/
+			width: 180px;
+			height: 120px;
+			background: url(img/bird_R.png) no-repeat;
+			/*background-size: 162px;*/
+			position: absolute;
+			top: 150px;
+			right: 100px;
+			animation: bird2 0.5s steps(2) infinite;
+		}
+		@keyframes bird3{
+			from{}
+			to{background-position: -360px 0;}
+		}
+		/*section#process .process_bar{
+			width: 1272px;
+			height: 532px;
+			background: url(img/bar_.png);
+			position: absolute;
+			border: 1px solid red;
+			bottom: 150px;
+			right: 200px;
+		}*/
+		/*product 페이지 코딩*/
+		section#product .one{
+			width: 634px;
+			height: 634px;
+			background: url(img/one.png);
+			position: absolute;
+			z-index: -1;
+			bottom: 195px;
+			left: 580px;
+		}
+		section#product .carousel ol{
+			/*border:1px solid red;*/
+			position: absolute;
+			top: 120px;
+			left: 860px;
+		}
+		section#product .carousel ol.top_btn li{
+			width: 20px;
+			height: 20px;
+			background-color: #47A8FF;
+			/*border:2px solid blue;*/
+			/*border-style: double;*/
+			float: left;
+			margin-left: 5px;
+			margin-right: 5px;
+			border-radius: 50%;
+			list-style: none;
+			cursor: pointer;
+			box-shadow: 1.5px 1.5px #297CE4 inset;
+		}
+		section#product ol.top_btn li.topStyle{
+			background-color: #DCEFFF;
+			/*border: 1px solid red;*/
+		}
+		section#product .products1{
+			width: 172px;
+			height: 591px;
+			background: url(img/makgeolli_9.png);
+			position: absolute;
+			bottom: 140px;
+			left: 800px;
+			z-index: 10;
+		}
+		section#product .products2{
+			width: 158px;
+			height: 590px;
+			background: url(img/product_5.png);
+			position: absolute;
+			bottom: 140px;
+			left: 808px;
+			z-index: 10;
+			/*display: none;*/
+		}
+		/*section#product .products:hover{
+			width: 170px;
+			height: 615px;
+			background: url(img/product_3.png);
+			position: absolute;
+			bottom: 140px;
+			left: 865px;
+		}*/
+		section#product .source{
+			width: 1000px;
+			height: 800px;
+			background: url(img/source.png);
+			position: absolute;
+			/*z-index: -1;*/
+			bottom:28px;
+			left: 380px;
+			/*border: 1px solid red;*/
+		}
+		section#product .twodrop{
+			width: 380px;
+			height: 100px;
+			background: url(img/twodrop.png);
+			position: absolute;
+			bottom: 140px;
+			left: 695px;
+			z-index: 11;
+			/*border: 1px solid red;*/
+		}
+		section#product .twingkle{
+			width: 389px;
+			height: 429px;
+			background: url(img/twingkle_1.png);
+			position: absolute;
+			left: 740px;
+			bottom: 370px;
+			/*border: 1px solid red;*/
+			animation:twingkle 0.7s infinite linear;
+		}
+		
+		@keyframes twingkle{
+			0%{}
+			50%{opacity: 0;}
+			100%{opacity: 1;}
+		}
+		section#product .nuts1{
+			width: 108px;
+			height: 72px;
+			background: url(img/nuts01.png);
+			position: absolute;
+			/*border: 1px solid red;*/
+			left: 600px;
+			top: 200px;
+			animation: bounce1 1s infinite linear;
+		}
+		@keyframes bounce1{
+			0%{}
+			50%{top: 220px;}
+			100%{bottom: 200px;}
+		}
+		section#product .nuts2{
+			/*border: 1px solid red;*/
+			width: 122px;
+			height: 111px;
+			background: url(img/nuts02.png);
+			position: absolute;
+			left: 480px;
+			top: 550px;
+			animation: bounce2 1s infinite linear;
+			
+		}
+		@keyframes bounce2{
+			0%{}
+			50%{top: 570px;}
+			100%{bottom: 550px;}
+		}
+		section#product .nuts3{
+			/*border: 1px solid red;*/
+			width: 66px;
+			height: 90px;
+			background: url(img/nuts03.png);
+			position: absolute;
+			top: 320px;
+			right: 650px;
+			animation: bounce3 1s infinite linear;
+			
+		}
+		@keyframes bounce3{
+			0%{}
+			50%{top: 340px;}
+			100%{bottom: 320px;}
+		}
+		section#product .nuts4{
+			/*border: 1px solid red;*/
+			width: 177px;
+			height: 165px;
+			background: url(img/nuts04.png);
+			position: absolute;
+			bottom: 150px;
+			right: 600px;
+			animation: bounce4 1s infinite linear;
+			
+		}
+		@keyframes bounce4{
+			0%{}
+			50%{bottom: 170px;}
+			100%{bottom: 150px;}
+		}
+		section#product #fruits{
+			display: none;
+		}
+
+		section#product .fruits1{
+			width: 76px;
+			height: 85px;
+			background: url(img/fruits_01.png);
+			position: absolute;
+			/*border: 1px solid red;*/
+			left: 600px;
+			top: 200px;
+			animation: bounce1 1s infinite linear;
+		}
+		@keyframes bounce1{
+			0%{}
+			50%{top: 220px;}
+			100%{bottom: 200px;}
+		}
+		section#product .fruits2{
+			/*border: 1px solid red;*/
+			width: 141px;
+			height: 97px;
+			background: url(img/fruits_02.png);
+			position: absolute;
+			left: 510px;
+			top: 550px;
+			animation: bounce2 1s infinite linear;
+			
+		}
+		@keyframes bounce2{
+			0%{}
+			50%{top: 570px;}
+			100%{bottom: 550px;}
+		}
+		section#product .fruits3{
+			/*border: 1px solid red;*/
+			width: 98px;
+			height: 97px;
+			background: url(img/fruits_03.png);
+			position: absolute;
+			top: 250px;
+			right: 680px;
+			animation: bounce3_1 1s infinite linear;
+			
+		}
+		@keyframes bounce3_1{
+			0%{}
+			50%{top: 270px;}
+			100%{bottom: 250px;}
+		}
+		section#product .fruits4{
+			/*border: 1px solid red;*/
+			width: 50px;
+			height: 50px;
+			background: url(img/fruits_04.png);
+			position: absolute;
+			bottom: 400px;
+			right: 710px;
+			animation: bounce4_1 1s infinite linear;
+			
+		}
+		@keyframes bounce4_1{
+			0%{}
+			50%{bottom: 420px;}
+			100%{bottom: 400px;}
+		}
+
+		section#product .fruits5{
+			/*border: 1px solid red;*/
+			width: 39px;
+			height: 39px;
+			background: url(img/fruits_05.png);
+			position: absolute;
+			top: 330px;
+			left: 600px;
+			animation: bounce5_1 1s infinite linear;
+			
+		}
+		@keyframes bounce5_1{
+			0%{}
+			50%{top: 350px;}
+			100%{top: 330px;}
+		}
+
+
+		section#product .fruits6{
+			/*border: 1px solid red;*/
+			width: 185px;
+			height: 133px;
+			background: url(img/fruits_06.png);
+			position: absolute;
+			bottom: 150px;
+			right: 580px;
+			animation: bounce6 1s infinite linear;
+			
+		}
+		@keyframes bounce6{
+			0%{}
+			50%{bottom: 170px;}
+			100%{bottom: 150px;}
+		}
+		section#product .graph1{
+			background: url(img/graph01.png);
+			width: 446px;
+			height: 563px;
+			position: absolute;
+			top: 180px;
+			right: 140px;
+			/*display: none;*/
+		}
+		section#product .graph2{
+			background: url(img/graph02.png);
+			width: 445px;
+			height: 563px;
+			position: absolute;
+			top: 180px;
+			right: 140px;
+			/*display: none;*/
+		}
+
+
+		/*program 페이지코딩*/
+		section#program .board4{
+			width: 486px;
+			height: 451px;
+			background: url(img/program02.png);
+			position: absolute;
+			top: 260px;
+			right: 180px;
+			box-shadow: 4px 4px 10px gray;
+			/*border: 1px solid red;*/
+		}
+		/*section#program button.rv{
+			position: absolute;
+			bottom: 230px;
+			right: 180px;
+			padding: 2px 15px 2px 15px;
+			box-shadow: 4px 4px 10px gray;
+		}*/
+		section#program button.rd{
+			position: absolute;
+			bottom: 230px;
+			right: 180px;
+			padding: 2px 15px 2px 15px;
+			box-shadow: 4px 4px 10px gray;
+		}
+		/*캐로쉘 구현*/
+		ol li, ul li{
+			list-style: none;
+		}
+		section#program .carousel{
+			width: 761px;
+			height: 571px;
+			/*border:1px solid red;*/
+			background: url(img/program_01.png) no-repeat center;
+			box-shadow: 2px 2px 5px gray;
+			position: absolute;
+			top: 200px;
+			left: 430px;
+			overflow: hidden;
+		}
+		
+		/*section#program .carousel ol.gallery{
+			width: 761px;
+			height: 571px;
+			border:1px solid blue;
+			position: absolute;
+			left: 100px;
+			top: 35px;
+			overflow: hidden;
+		}*/
+		section#program .carousel ol.board li{
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			left:100%;
+			list-style: none;
+		}
+		section#program .carousel ol.board li:nth-child(1){
+			background: url(img/program_01.png) no-repeat center;
+			left:0;
+		}
+		section#program .carousel ol.board li:nth-child(2){
+			background: url(img/class01.png) no-repeat center;
+		}
+		section#program .carousel ol.board li:nth-child(3){
+			background: url(img/class0.png) no-repeat center;
+		}
+		section#program .carousel ol.btn_set{
+			/*border:1px solid red;*/
+			position: absolute;
+			bottom: 10px;
+			right: 1%;
+		}
+		section#program .carousel ol.btn_set li{
+			width: 15px;
+			height: 15px;
+			background-color: #E1D1C4;
+			float: left;
+			margin-left: 5px;
+			margin-right: 5px;
+			border-radius: 50%;
+			list-style: none;
+			cursor: pointer;
+			box-shadow: 1.5px 1.5px #C8BAAC inset;
+		}
+		section#program ol.btn_set li.active{
+			background-color: lightgray;
+			/*border: 1px solid red;*/
+		}
+		section#program #map{
+			/*border: 1px solid red;*/
+			width: 486px;
+			height: 451px;
+			position: absolute;
+			top: 260px;
+			right: 180px;
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="wrapper">
+		<nav class="logo"><a href="#home">home</a></nav>
+		<section id="home">
+			<div class="woori_pd">
+				<div class="wooRi"></div>
+				<div class="wooRi2"></div>
+				<div class="text_pd"></div>
+				<div class="tubeshow"></div>
+				<div class="video">
+					<div class="utude">
+						<iframe width="896" height="504" src="https://www.youtube.com/embed/Kmr02SFsdTk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</div>
+			</div>
+			</div>
+			<div class="dokdo"></div>
+			<div class="ulleungdo"></div>
+			<div class="woori_ill">
+				<div class="makgeolli"></div>
+				<div class="glass"></div>
+			</div>
+			<div class="bird1"></div>
+			<div class="bird2"></div>
+			<div class="bird3"></div>
+			<div class="searion"></div>
+			<div class="LNB"></div>
+			<nav id="lnb_top">
+				<ul>
+					<li><a href="#about">menu1</a></li>
+					<li><a href="#process">menu2</a></li>
+					<li><a href="#product">menu3</a></li>
+					<li><a href="#program">menu4</a></li>
+				</ul>
+			</nav>
+			<nav id="gnb_side">
+				<ul>
+					<li><a href="#about">menu1</a></li>
+					<li><a href="#process">menu2</a></li>
+					<li><a href="#product">menu3</a></li>
+					<li><a href="#program">menu4</a></li>
+				</ul>
+			</nav>
+		</section>
+		<section id="about">
+			<div class="txtclick"></div>
+			<div class="txtclick2"></div>
+			<div class="txtclick3"></div>
+			<div class="story1"></div>
+			<div class="story2"></div>
+			<div class="story3"></div>
+			<img src="img/water_ep.png" alt="">
+			<div class="dokdo2"></div>
+			<div class="drop_mg"></div>
+			<div class="drop_ca"></div>
+			<div class="drop_k"></div>
+			<div class="bird2"></div>
+			<div class="bird3"></div>
+			<div class="fish1"></div>
+			<div class="fish2"></div>
+			<div class="fish3"></div>
+			<div class="fish4"></div>
+			<div class="fish5"></div>
+		</section>
+		<section id="process">
+			<div class="process_bar"></div>
+			<div class="section8"></div>
+			<div class="process_mk"></div>
+			<div class="bird2"></div>
+			<div class="bird3"></div>
+		</section>
+		<section id="product">
+			<div class="one"></div>
+			<div class="source"></div>
+			<div class="twingkle"></div>
+			<div class="twodrop"></div>
+			<!-- <div class="carousel">
+				<i class="fas fa-caret-left"></i>
+				<i class="fas fa-caret-right"></i>
+			</div> -->
+			<div class="carousel">
+				<ol class="top_btn">
+					<li class="topStyle"></li>
+					<li></li>
+				</ol>
+				<ol class="drop_btn">
+					<li></li>
+					<li></li>
+				</ol>
+			</div>
+			<div id="nuts">
+				<div class="products1"></div>
+				<div class="graph1"></div>
+				<div class="nuts1"></div>
+				<div class="nuts2"></div>
+				<div class="nuts3"></div>
+				<div class="nuts4"></div>
+			</div>
+			<div id="fruits">
+				<div class="products2"></div>
+				<div class="graph2"></div>
+				<div class="fruits1"></div>
+				<div class="fruits2"></div>
+				<div class="fruits3"></div>
+				<div class="fruits4"></div>
+				<div class="fruits5"></div>
+				<div class="fruits6"></div>	
+			</div>
+			<div class="click1"></div>
+			<div class="click2"></div>
+			<div class="click1_hover"></div>
+			<div class="click2_hover"></div>
+			<!-- <div class="gragh">
+				<div class="graph1"></div>
+				<div class="graph2"></div>
+			</div> -->
+		</section>
+		<section id="program">
+			<div class="carousel">
+				<ol class="board">
+					<li></li>
+					<li></li>
+					<li></li>
+				</ol>
+				<ol class="btn_set">
+					<li class="active"></li>
+					<li></li>
+					<li></li>
+				</ol>
+			</div>
+			<div class="board4"></div>
+			<div id="map"></div>
+			<button class="rd">지도보기</button>
+			<button class="rv">예약하기</button>
+		</section>
+	</div>
+	<script>
+		$(function(){
+			// home
+			var wooriPd = $("#home .woori_pd>div")
+			var wooriLll = $("#home .woori_ill>div")
+			var wooritxt = $("#home .text_pd")
+			var utudetxt = $("#home .tubeshow")
+			var utudeshow = $("#home .utude")
+
+			setTimeout(function(){
+
+				// alert();
+				wooriPd.fadeIn(1000);
+				wooriLll.hide();
+
+			},4600);
+
+			wooritxt.click(function(){
+				var position = $("#product").offset();
+
+				// alert();
+
+				$("html").animate({scrollTop:position.top},2940);
+
+			});
+			utudetxt.click(function(){
+				
+				utudeshow.fadeToggle();
+				
+			});
+
+
+			//01 about 
+			var dropmg=$("#about .drop_mg")
+			var dropca=$("#about .drop_ca")
+			var dropk=$("#about .drop_k")
+			var aboutus=$("#about .story1")
+			var aboutwater=$("#about .story2")
+			var aboutrice=$("#about .story3")
+			var video=$("#about .video")
+
+
+			dropmg.click(function(){
+				aboutus.fadeIn();
+				aboutrice.fadeOut();
+				aboutwater.fadeOut();
+				video.hide();
+			})
+			dropca.click(function(){
+				aboutwater.fadeIn();
+				aboutus.fadeOut();
+				aboutrice.fadeOut();
+				video.hide();
+			})
+			dropk.click(function(){
+				aboutrice.fadeIn();
+				aboutus.fadeOut();
+				aboutwater.fadeOut();
+				video.hide();
+			})
+			//03 Product
+			var nuts=$("#product #nuts")
+			var fruits=$("#product #fruits")
+			var topBtn=$("#product ol.top_btn li")
+			
+			// var i = $(this).index();
+
+			topBtn.click(function(){
+				var i = $(this).index();
+				// alert(i);
+
+				topBtn.removeClass("topStyle");
+				topBtn.eq(i).addClass("topStyle");
+
+				if(i==0){
+				fruits.hide();
+				nuts.fadeIn();
+				}else{
+					nuts.hide();
+					fruits.fadeIn();
+				}
+			})
+			
+
+			//04 program
+			var carousel_img = $("#program .board li");
+			var carousel_btn = $("#program .btn_set li");
+			var current = 0;
+			
+			carousel_btn.click(function(){
+				var tg = $(this);
+				var i =tg.index();
+			
+				// alert(i);
+
+				carousel_btn.removeClass("active");
+				carousel_btn.eq(i).addClass("active");
+
+				if(current==i) return 0;
+					//동작하지 않겠다!!
+				move(i);
+
+				function move(i){
+
+					var currentImg = carousel_img.eq(current);
+					var nextImg = carousel_img.eq(i);
+					currentImg.css("left",0).animate({"left":"-100%"});
+					nextImg.css("left","100%").animate({"left":0});
+					current =i ;2
+				}
+				
+			})
+			// carousel_btn.click(function(){
+			// 	var i =$(this).index();
+			
+			// 	// alert(i);
+
+			// 	carousel_btn.removeClass("active");
+			// 	carousel_btn.eq(i).addClass("active");
+
+			// })
+
+			var btn=$("#program .rd")
+			var rd=$("#program #map")
+
+			btn.click(function(){
+				rd.fadeToggle()
+			})
+		})
+		"use strict";
+		function initMap() {
+			const woori={
+				lat: 37.517707,
+	        	lng: 126.958135,	
+			};
+	        const map = new google.maps.Map(document.getElementById("map"), {
+	          zoom: 14,
+	          center: woori,
+	        });
+	        const contentString =
+	          '<div id="content">' +
+	          '<div id="siteNotice">' +
+	          "</div>" +
+	          '<p id="firstHeading" class="firstHeading">서울특별시 용산구 이촌동 양녕로 445</p>' +
+	          '<div id="bodyContent">' +
+	          "</div>" +
+	          "</div>";
+	        const infowindow = new google.maps.InfoWindow({
+	          content: contentString,
+	        });
+	        const marker = new google.maps.Marker({
+	          position: woori,
+	          map,
+	          title: "우리막걸리 (노들섬)",
+	        });
+	        infowindow.open(map, marker);
+    	}
+	</script>
+</body>
+</html>
